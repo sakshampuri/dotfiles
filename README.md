@@ -8,6 +8,9 @@ All the config for configuring the zshell with oh-my-zsh plugin
 Following are the plugins currently added:
 plugins=(git zsh-syntax-highlighting brew gitignore vi-mode iterm2 node thefuck npm zsh-autosuggestions extract)
 
+- Setup Screenshot:
+    ![screenshot](https://i.imgur.com/1ndCoWl.png)
+
 ### coc-settings.json
 This contains all the current configuration for the coc plugin and prettier config according to current project support with es-lint
 
