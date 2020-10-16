@@ -2,7 +2,7 @@
 
 ### .zshrc
 All the config for configuring the zshell with oh-my-zsh plugin
-
+- [oh-my-zsh](https://github.com/ohmyzsh)
 - Theme : [PowerLevel10k](https://github.com/romkatv/powerlevel10k)
 
 Following are the plugins currently added:
