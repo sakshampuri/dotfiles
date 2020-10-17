@@ -4,26 +4,32 @@ call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
 
-Plug 'dracula/vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'maxmellon/vim-jsx-pretty'
 Plug 'yuezk/vim-js'
-
+Plug 'mhartington/oceanic-next'
+Plug 'sheerun/vim-polyglot'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
 " Config Section
 
+" Snippets
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']
+let g:UltiSnipsExpandTrigger="<tab>"               
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
 " prettier
+nnoremap gp :silent %!prettier --stdin-filepath %<CR>
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 
 " tab remapping
@@ -41,10 +47,10 @@ nnoremap <silent> <c-l> :exe "tabn ".g:lasttab<cr>
 vnoremap <silent> <c-l> :exe "tabn ".g:lasttab<cr>
 
 if (has("termguicolors"))
- set termguicolors
+set termguicolors
 endif
 syntax enable
-colorscheme dracula
+colorscheme OceanicNext
 
 " Terminal config below
 " open new split panes to right and below
