@@ -1,6 +1,9 @@
 {
-	 "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "javascript", "js", "typescript", "tsx"],
-	 "prettier.tabWidth": 4,
-	 "prettier.endOfLine": "auto",
-	 "prettier.jsxSingleQuote": true
+    "coc.preferences.formatOnSaveFiletypes": ["*"],
+    "prettier.tabWidth": 4,
+    "prettier.endOfLine": "auto",
+    "prettier.jsxSingleQuote": true,
+    "prettier.formatterPriority": 1,
+    "diagnostic.checkCurrentLine": true,
+    "python.jediEnabled": false
 }

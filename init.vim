@@ -14,23 +14,79 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'yuezk/vim-js'
 Plug 'mhartington/oceanic-next'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'joshdick/onedark.vim'
+Plug 'arzg/vim-colors-xcode'
+Plug 'jiangmiao/auto-pairs'
+Plug 'alvan/vim-closetag'
+Plug 'mattn/emmet-vim'
+Plug 'https://gitlab.com/code-stats/code-stats-vim.git'
+Plug 'vim-airline/vim-airline'
+Plug 'ianding1/leetcode.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'dense-analysis/ale'
+Plug 'tpope/vim-surround'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
 " Config Section
+" setting shift width to 4 opposed to 8 of default
+:set shiftwidth=4
+
+let g:NERDTreeQuitOnOpen = 0
+"leader map
+let g:mapleader=","
+
+" to make fugitive work seamlessly with editorconfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+" ale config
+let g:ale_fixers = ['prettier', 'eslint']
+
+" Code::Stats API key info
+let g:codestats_api_key="SFMyNTY.YzJGcmMyaGhiWEIxY21rPSMjTVRFNU1UZz0.FNms0q3K18002HO7n3sVZeW_XQiEeHNF03wpWgE1rZE"
+"Airline config
+let g:airline_section_x = airline#section#create_right(['tagbar', 'filetype', '%{CodeStatsXp()}'])
+let g:airline#extensions#tabline#enabled = 1
+
+"ctrlp
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+"Emmet
+let g:user_emmet_leader_key="<c-x>"
+
+" CLosing tags config for jsx and all
+let g:closetag_filenames = '*.html,*.xhtml,*.js,*.tsx,*.jsx'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
+let g:closetag_filetypes = 'html,xhtml,js,tsx'
+let g:closetag_xhtml_filetypes = 'xhtml,jsx,tsx,js'
+let g:closetag_emptyTags_caseSensitive = 1
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ }
+let g:closetag_shortcut = '>'
+
+
+" Disabling jsx-pretty from polyglot since installed seperately
+let g:polyglot_disabled = ['jsx']
+let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
 " Snippets
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']
-let g:UltiSnipsExpandTrigger="<tab>"               
-let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-l>"               
+let g:UltiSnipsJumpForwardTrigger="<c-l>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 " prettier
-nnoremap gp :silent %!prettier --stdin-filepath %<CR>
+" nnoremap gp :silent %!prettier --stdin-filepath %<CR>
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+nnoremap gp :silent  :call CocAction('format') <CR>
 
 " tab remapping
 " tab navigation: Alt or Ctrl+Shift may not work in terminal:
@@ -39,18 +95,23 @@ command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 nnoremap <C-t>     :tabnew<CR>
 inoremap <C-t>     <Esc>:tabnew<CR>
 " move to the previous/next tabpage.
-nnoremap <C-j> gT
-nnoremap <C-k> gt
+nnoremap <silent> <C-j> :bprev<CR>
+nnoremap <silent> <C-k> :bnext<CR>
+nnoremap <silent> <C-x> :bp<CR>:bd #<CR>
+" Remap for vim-airline switching between buffers
+nnoremap <w> :bnext<CR>
+nnoremap <q> :bprev<CR>
 " Go to last active tab 
 au TabLeave * let g:lasttab = tabpagenr()
 nnoremap <silent> <c-l> :exe "tabn ".g:lasttab<cr>
 vnoremap <silent> <c-l> :exe "tabn ".g:lasttab<cr>
 
+" Theme set over here
 if (has("termguicolors"))
 set termguicolors
 endif
 syntax enable
-colorscheme OceanicNext
+colorscheme xcodedarkhc
 
 " Terminal config below
 " open new split panes to right and below
@@ -89,7 +150,7 @@ autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-nnoremap <silent> <C-k><C-B> :NERDTreeToggle<CR>
+nnoremap <silent> <leader>t :NERDTreeToggle<CR>
 
 
 
@@ -248,7 +309,16 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+" setting relative numbering mized with the current line number (same as
+" vscode config)
 :set nu rnu
+
+" LeetCode Vim config
+let g:leetcode_solution_filetype='java'
+let g:leetcode_browser='chrome'
+let g:leetcode_hide_paid_only=1
+
+
 
 " Config for ctrlp
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'

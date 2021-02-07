@@ -75,7 +75,16 @@ ZSH_THEME="spaceship"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting brew gitignore vi-mode iterm2 node thefuck npm zsh-autosuggestions extract)
+plugins=(
+		git 
+		zsh-syntax-highlighting
+		brew 
+		autojump
+		vi-mode
+		zsh-autosuggestions 
+		bgnotify
+		extract
+)
 
 eval $(thefuck --alias)
 
@@ -120,10 +129,31 @@ source $(dirname $(gem which colorls))/tab_complete.sh
   autoload -U promptinit; promptinit
   prompt spaceship
 (( ! ${+functions[p10k]} )) || p10k finalize
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export PATH="/usr/local/opt/openjdk/libexec/openjdk.jdk/Contents/Home/bin:$PATH"
 export PATH="/Library/TeX/texbin:$PATH"
 export PATH=${PATH}:~/Library/Python/3.8/bin:~/bin
 export ANDROID_SDK=/Users/sakshampuri/Library/Android/sdk
 export PATH=/Users/sakshampuri/Library/Android/sdk/platform-tools:$PATH
 
+#REACT NATIVE ANDROID_HOME CONFIG
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+#Python 3.9 bin path
+export PATH=/Users/sakshampuri/Library/Python/3.9/bin:$PATH
+
 alias python=python3
+
+# Added by Amplify CLI binary installer
+export PATH="$HOME/.amplify/bin:$PATH"
+
+# NODE VERSION MANAGER NVM 
+ export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+source $(dirname $(gem which colorls))/tab_complete.sh
+
+alias l='colorls -G'
