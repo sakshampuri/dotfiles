@@ -84,6 +84,7 @@ plugins=(
 		zsh-autosuggestions 
 		bgnotify
 		extract
+		yarn
 )
 
 eval $(thefuck --alias)
