@@ -5,5 +5,17 @@
     "prettier.jsxSingleQuote": true,
     "prettier.formatterPriority": 1,
     "diagnostic.checkCurrentLine": true,
-    "python.jediEnabled": false
+    "python.jediEnabled": false,
+		"tsserver.pluginPaths":["typescript-plugin-css-modules"],
+		"javascript.validate.enable": false,
+		"languageserver": {
+        "swift": {
+            "command": "sourcekit-lsp",
+            "args": [],
+            "filetypes": ["swift"],
+            "initializationOptions": {},
+            "settings": {}
+        }
+    },
+    "clangd.path": "/Users/sakshampuri/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd"
 }
