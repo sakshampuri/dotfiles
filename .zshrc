@@ -5,17 +5,24 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+ZSH_DISABLE_COMPFIX=true
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/sakshampuri/.oh-my-zsh"
+export ZSH="/Users/spuri/.oh-my-zsh"
+
+# NVM bin
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="spaceship"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -52,6 +59,8 @@ ZSH_THEME="spaceship"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
+# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -75,19 +84,7 @@ ZSH_THEME="spaceship"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-		git 
-		zsh-syntax-highlighting
-		brew 
-		autojump
-		vi-mode
-		zsh-autosuggestions 
-		bgnotify
-		extract
-		yarn
-)
-
-eval $(thefuck --alias)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -116,45 +113,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-#configuring colorls
-source $(dirname $(gem which colorls))/tab_complete.sh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-  # Set Spaceship ZSH as a prompt
-  autoload -U promptinit; promptinit
-  prompt spaceship
-(( ! ${+functions[p10k]} )) || p10k finalize
-export PATH="/usr/local/opt/openjdk/libexec/openjdk.jdk/Contents/Home/bin:$PATH"
-export PATH="/Library/TeX/texbin:$PATH"
-export PATH=${PATH}:~/Library/Python/3.8/bin:~/bin
-export ANDROID_SDK=/Users/sakshampuri/Library/Android/sdk
-export PATH=/Users/sakshampuri/Library/Android/sdk/platform-tools:$PATH
-
-#REACT NATIVE ANDROID_HOME CONFIG
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-#Python 3.9 bin path
-export PATH=/Users/sakshampuri/Library/Python/3.9/bin:$PATH
-
-alias python=python3
-
-# Added by Amplify CLI binary installer
-export PATH="$HOME/.amplify/bin:$PATH"
-
-# NODE VERSION MANAGER NVM 
- export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-source $(dirname $(gem which colorls))/tab_complete.sh
-
-alias l='colorls -G'
