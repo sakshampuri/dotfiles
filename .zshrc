@@ -1,3 +1,17 @@
+# Adoptopenjdk version switch (installed with homebrew)
+usejdk() {
+        version=$1
+				isDefault=$2
+        export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
+				if test ${isDefault:-false} = false
+				then
+						java -version
+				fi
+ }
+
+# Setting default java version
+usejdk ${DEFAULT_JAVA_VERSION:-11} true;
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
