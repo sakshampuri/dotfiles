@@ -6,13 +6,19 @@
     "prettier.formatterPriority": 1,
     "diagnostic.checkCurrentLine": true,
     "python.jediEnabled": false,
-		"tsserver.pluginPaths":["typescript-plugin-css-modules"],
-		"javascript.validate.enable": false,
-		"languageserver": {
+    "tsserver.pluginPaths": ["typescript-plugin-css-modules"],
+    "javascript.validate.enable": false,
+    "languageserver": {
         "swift": {
             "command": "sourcekit-lsp",
             "args": [],
             "filetypes": ["swift"],
+            "initializationOptions": {},
+            "settings": {}
+        },
+        "terraform": {
+            "command": "terraform-lsp",
+            "filetypes": ["terraform", "tf"],
             "initializationOptions": {},
             "settings": {}
         }
