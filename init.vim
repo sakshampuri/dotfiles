@@ -27,6 +27,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-surround'
+Plug 'dart-lang/dart-vim-plugin'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
